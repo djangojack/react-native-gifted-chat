@@ -15,6 +15,14 @@ export default class Composer extends React.Component {
     // Support earlier versions of React Native on Android.
     if (!contentSize) return;
 
+    // fix issue of input jumping on load
+    if (
+      !this.props.text.length &&
+      (!this.contentSize || contentSize.height > this.contentSize.height)
+    ) {
+      return;
+    }
+
     if (
       !this.contentSize ||
       this.contentSize.width !== contentSize.width ||
