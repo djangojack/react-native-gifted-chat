@@ -199,7 +199,8 @@ const styles = {
     },
     wrapper: {
       borderRadius: 15,
-      backgroundColor: Color.defaultBlue,
+      // backgroundColor: Color.defaultBlue,
+      backgroundColor: "#34B0C3",
       marginLeft: 60,
       minHeight: 20,
       justifyContent: 'flex-end',
