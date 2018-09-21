@@ -2,7 +2,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyleSheet, View, Keyboard, ViewPropTypes } from 'react-native';
+import { StyleSheet, Platform, View, Keyboard, ViewPropTypes } from 'react-native';
 
 import Composer from './Composer';
 import Send from './Send';
@@ -23,8 +23,12 @@ export default class InputToolbar extends React.Component {
   }
 
   componentWillMount() {
-    this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
-    this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
+
+    const showEvent = Platform.OS === 'android' ? 'keyboardDidShow' : 'keyboardWillShow';
+    const hideEvent = Platform.OS === 'android' ? 'keyboardDidHide' : 'keyboardWillHide';
+    
+    this.keyboardWillShowListener = Keyboard.addListener(showEvent, this.keyboardWillShow);
+    this.keyboardWillHideListener = Keyboard.addListener(hideEvent, this.keyboardWillHide);
   }
 
   componentWillUnmount() {
